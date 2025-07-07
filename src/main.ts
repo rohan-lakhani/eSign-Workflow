@@ -12,10 +12,18 @@ async function bootstrap() {
   const port = configService.get<number>('port', 3001);
   const frontendUrl = configService.get<string>('frontendUrl', 'http://localhost:5173');
 
-  // CORS configuration
+  // CORS configuration - Updated for Vercel deployment
   app.enableCors({
-    origin: [frontendUrl, 'http://localhost:5173', 'http://localhost:3000'],
+    origin: [
+      frontendUrl, 
+      'http://localhost:5173', 
+      'http://localhost:3000',
+      /^https:\/\/.*\.vercel\.app$/,  // Allow all Vercel preview URLs
+      'https://your-frontend.vercel.app' // Replace with your actual frontend URL
+    ],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   // Global validation pipe
@@ -37,5 +45,13 @@ async function bootstrap() {
   eSign Workflow NestJS Server Started
   Port: ${port}
 `);
+
+  return app;
 }
-bootstrap();
+
+// For Vercel deployment
+if (process.env.VERCEL) {
+  module.exports = bootstrap();
+} else {
+  bootstrap();
+}
