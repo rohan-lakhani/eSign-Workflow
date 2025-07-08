@@ -2,12 +2,18 @@ import { Controller, Get } from '@nestjs/common';
 
 @Controller()
 export class AppController {
+  @Get()
+  getHello(): string {
+    return 'eSign Workflow API is running!';
+  }
+
   @Get('health')
   getHealth() {
     return {
       status: 'ok',
       timestamp: new Date().toISOString(),
-      service: 'eSign Workflow NestJS API',
+      service: 'esign-workflow-api',
+      version: '1.0.0'
     };
   }
 

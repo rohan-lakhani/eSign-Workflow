@@ -12,12 +12,13 @@ async function bootstrap() {
   const port = configService.get<number>('port', 3001);
   const frontendUrl = configService.get<string>('frontendUrl', 'http://localhost:5173');
 
-  // CORS configuration - Updated for Vercel deployment
+  // CORS configuration - Updated for Render deployment
   app.enableCors({
     origin: [
       frontendUrl, 
+      'https://esign-workflow-cxcx.onrender.com',
       'http://localhost:5173', 
-      'http://localhost:3000',
+      'http://localhost:4173', // Vite preview
     ],
     credentials: true,
   });
