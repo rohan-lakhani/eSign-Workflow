@@ -18,12 +18,8 @@ async function bootstrap() {
       frontendUrl, 
       'http://localhost:5173', 
       'http://localhost:3000',
-      /^https:\/\/.*\.vercel\.app$/,  // Allow all Vercel preview URLs
-      'https://your-frontend.vercel.app' // Replace with your actual frontend URL
     ],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   // Global validation pipe
@@ -49,9 +45,4 @@ async function bootstrap() {
   return app;
 }
 
-// For Vercel deployment
-if (process.env.VERCEL) {
-  module.exports = bootstrap();
-} else {
-  bootstrap();
-}
+bootstrap();

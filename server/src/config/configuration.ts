@@ -2,7 +2,7 @@ export default () => ({
   nodeEnv: process.env.NODE_ENV || 'development',
   port: parseInt(process.env.PORT || '3001', 10),
   database: {
-    uri: process.env.DATABASE_URI || 'mongodb://localhost:27017/esign-workflow',
+    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/esign-workflow',
   },
   jwt: {
     secret: process.env.JWT_SECRET || 'default-jwt-secret',

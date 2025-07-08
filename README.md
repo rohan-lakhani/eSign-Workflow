@@ -72,7 +72,7 @@ cd ..
 4. Create a `.env` file in the root directory:
 ```env
 # MongoDB Configuration
-DATABASE_URI=mongodb://localhost:27017/esign-workflow
+MONGODB_URI=mongodb://localhost:27017/esign-workflow
 
 # JWT Configuration
 JWT_SECRET=your-super-secret-jwt-key-change-this
