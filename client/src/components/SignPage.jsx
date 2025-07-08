@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../utils/api';
 import { toast } from 'react-toastify';
 import { FaFileAlt, FaCheckCircle } from 'react-icons/fa';
 
@@ -33,7 +34,7 @@ const SignPage = () => {
     }
     
     try {
-      const response = await axios.get(`/api/workflows/${workflowId}`, {
+      const response = await axios.get(`${API_BASE_URL}/workflows/${workflowId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -42,7 +43,7 @@ const SignPage = () => {
       setWorkflow(workflowData);
       
       // Generate document preview URL
-      const docUrl = `/api/documents/${workflowData.document.id}/preview`;
+      const docUrl = `${API_BASE_URL}/documents/${workflowData.document.id}/preview`;
       setDocumentUrl(docUrl);
       
       // Extract role from token (in production, verify this server-side)
@@ -88,7 +89,7 @@ const SignPage = () => {
       };
 
       const response = await axios.post(
-        `/api/workflows/${workflowId}/sign`,
+        `${API_BASE_URL}/workflows/${workflowId}/sign`,
         payload,
         {
           headers: {

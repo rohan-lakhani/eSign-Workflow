@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { API_BASE_URL } from '../utils/api';
 import { FaCloudUploadAlt, FaFileAlt, FaClipboardList, FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
 
 const steps = ['Upload PDF', 'Create Workflow', 'Submit for Signing'];
@@ -35,7 +36,7 @@ const HomePage = () => {
     formData.append('file', uploadFile);
 
     try {
-      const response = await axios.post('/api/documents/upload', formData);
+      const response = await axios.post(`${API_BASE_URL}/documents/upload`, formData);
       setDocumentId(response.data.document.id);
       toast.success('Document uploaded successfully!');
       setActiveStep(1);
@@ -74,7 +75,7 @@ const HomePage = () => {
         ]
       };
 
-      const response = await axios.post('/api/workflows', payload);
+      const response = await axios.post(`${API_BASE_URL}/workflows`, payload);
       setWorkflowId(response.data.workflow.id);
       toast.success('Workflow created successfully!');
       setActiveStep(2);
@@ -93,7 +94,7 @@ const HomePage = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post(`/api/workflows/${workflowId}/submit`, {});
+      const response = await axios.post(`${API_BASE_URL}/workflows/${workflowId}/submit`, {});
       
       toast.success('Workflow submitted successfully! Email sent to Role 1.');
       setActiveStep(3);
