@@ -193,7 +193,7 @@ export class WorkflowsService {
       for (const role of workflow.roles) {
         if (role.email) {
           try {
-            const downloadUrl = `${this.configService.get<string>('frontendUrl')}/api/documents/${document._id}/download`;
+            const downloadUrl = `${this.configService.get<string>('backendUrl')}/api/documents/${document._id}/download`;
             await this.emailService.sendCompletionNotification(
               role.email,
               document.originalName,

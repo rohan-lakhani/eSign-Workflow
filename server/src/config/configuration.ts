@@ -1,6 +1,6 @@
 export default () => ({
   nodeEnv: process.env.NODE_ENV || 'development',
-  port: parseInt(process.env.PORT || '3001', 10),
+  port: parseInt(process.env.PORT || '3000', 10),
   database: {
     uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/esign-workflow',
   },
@@ -25,4 +25,5 @@ export default () => ({
     maxFileSize: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10), // 10MB
   },
   frontendUrl: process.env.FRONTEND_URL || 'http://localhost:5173',
+  backendUrl: process.env.BACKEND_URL || 'http://localhost:3000',
 }); 
