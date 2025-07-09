@@ -17,6 +17,7 @@ async function bootstrap() {
     origin: [
       frontendUrl, 
       'https://esign-workflow-cxcx.onrender.com',
+      'https://esign-five.vercel.app',
       'http://localhost:5173', 
       'http://localhost:4173', // Vite preview
     ],
